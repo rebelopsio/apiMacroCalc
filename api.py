@@ -1,5 +1,6 @@
 from flask import Flask, request
 from flask_restful import Resource, Api, reqparse
+from results import SetMacros, Results
 
 app = Flask(__name__)
 api = Api(app)
