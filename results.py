@@ -37,3 +37,8 @@ class Results:
     def __init__(self, basal_metabolic_rate=0):
         self._basal_metabolic_rate = basal_metabolic_rate
         self._created_date = datetime.now()
+
+    rest_day_macros = SetMacros()
+    light_day_macros = SetMacros()
+    moderate_day_macros = SetMacros()
+    hard_day_macros = SetMacros()
