@@ -37,6 +37,15 @@ class Results:
     def __init__(self, basal_metabolic_rate=0):
         self._basal_metabolic_rate = basal_metabolic_rate
         self._created_date = datetime.now()
+    
+    def get_created_date(self) -> datetime:
+        return self._created_date
+    
+    def get_basal_metabolic_rate(self) -> int:
+        return self._basal_metabolic_rate
+    
+    def set_basal_metabolic_rate(self, basal_metabolic_rate:int) -> None:
+        self._basal_metabolic_rate = basal_metabolic_rate
 
     rest_day_macros = SetMacros()
     light_day_macros = SetMacros()
