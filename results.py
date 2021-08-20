@@ -38,6 +38,10 @@ class Results:
     def __init__(self, basal_metabolic_rate=0):
         self._basal_metabolic_rate = basal_metabolic_rate
         self._created_date = datetime.now().strftime("%m-%d-%Y, %H:%M:%S")
+        self.rest_day_macros = SetMacros()
+        self.light_day_macros = SetMacros()
+        self.moderate_day_macros = SetMacros()
+        self.hard_day_macros = SetMacros()
     
     def get_created_date(self) -> datetime:
         return self._created_date
@@ -48,14 +52,13 @@ class Results:
     def set_basal_metabolic_rate(self, basal_metabolic_rate:int) -> None:
         self._basal_metabolic_rate = basal_metabolic_rate
 
-    rest_day_macros = SetMacros()
-    light_day_macros = SetMacros()
-    moderate_day_macros = SetMacros()
-    hard_day_macros = SetMacros()
+    
 
 class ResultsEncoder(JSONEncoder):
     def default(self, object):
         if isinstance(object, Results):
+            return object.__dict__
+        elif isinstance(object, SetMacros):
             return object.__dict__
         else:
             # call base class implementation which takes care of
