@@ -1,7 +1,7 @@
 from collections import namedtuple
 
 
-class calculations:
+class Calculations:
     def basal_metabolic_rate(sex: str, age: int, height_inches: int, weight: int) -> float:
         bmr = 0.0
         if sex.upper() == "MALE":

@@ -1,4 +1,5 @@
 from datetime import datetime
+from json import JSONEncoder
 
 
 class SetMacros:
@@ -36,7 +37,7 @@ class SetMacros:
 class Results:
     def __init__(self, basal_metabolic_rate=0):
         self._basal_metabolic_rate = basal_metabolic_rate
-        self._created_date = datetime.now()
+        self._created_date = datetime.now().strftime("%m-%d-%Y, %H:%M:%S")
     
     def get_created_date(self) -> datetime:
         return self._created_date
@@ -51,3 +52,12 @@ class Results:
     light_day_macros = SetMacros()
     moderate_day_macros = SetMacros()
     hard_day_macros = SetMacros()
+
+class ResultsEncoder(JSONEncoder):
+    def default(self, object):
+        if isinstance(object, Results):
+            return object.__dict__
+        else:
+            # call base class implementation which takes care of
+            # raising exceptions for unsupported types
+            return JSONEncoder.default(self, object)
