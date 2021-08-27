@@ -1,6 +1,6 @@
-from flask import Flask, request
+from flask import Flask, jsonify
 from flask_restful import Resource, Api, reqparse
-from results import ResultsEncoder, SetMacros, Results
+from results import ResultsEncoder, Results
 from calculations import Calculations
 import json
 
@@ -59,11 +59,15 @@ class apiMacroCalc(Resource):
         macros.hard_day_macros.set_calories(obj_hard_day_macros.tdee)
         macros.set_basal_metabolic_rate(bMR)
 
-        json_data = ResultsEncoder().encode(macros)
-        return json_data, 201
+        json_data = json.dumps(macros)
+        #json_data = ResultsEncoder().encode(macros)
+        print(type(json_data))
+        print(str(json_data))
+        print(repr(json_data))
+        return json_data
 
 
 api.add_resource(apiMacroCalc, '/')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(debug=False)

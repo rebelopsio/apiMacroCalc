@@ -2,6 +2,7 @@ from collections import namedtuple
 
 
 class Calculations:
+    @staticmethod
     def basal_metabolic_rate(sex: str, age: int, height_inches: int, weight: int) -> float:
         bmr = 0.0
         if sex.upper() == "MALE":
@@ -12,6 +13,7 @@ class Calculations:
                                            ) - ((5 * age) + 5) - 161  # Mifflin-St. Jeor formula
         return bmr
 
+    @staticmethod
     def caloric_intake(bmr: float, type: str) -> float:
         multiplier = 0.0
         if type == "rest":
@@ -25,6 +27,7 @@ class Calculations:
         calories = bmr * multiplier
         return calories
 
+    @staticmethod
     def create_macros(calories: int, weight: int, type: str) -> namedtuple:
         protein = weight * 1
         carbs = 0
